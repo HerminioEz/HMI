@@ -9,11 +9,16 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       home: Scaffold(
+        appBar: AppBar(title: const Text('Cargar Imágenes')),
         body: Center(
-          child: Text('Hello World!'), 
-          child: Image(image: ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Image.asset('assets/R.jpg'),
+            ],
+          ),
         ),
       ),
     );
