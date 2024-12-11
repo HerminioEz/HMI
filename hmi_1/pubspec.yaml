@@ -1,4 +1,4 @@
-name: vinyls
+name: _vinyls_2_Vibe
 description: Our new application project
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -25,4 +25,4 @@ flutter:
   uses-material-design: true
 
 assets:
-  - assets/R.jpg
+  - assets/
