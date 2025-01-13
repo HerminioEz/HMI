@@ -25,7 +25,7 @@ class WelcomeScreenState extends State<WelcomeScreen> {
         fit: StackFit.expand,
         children: [
           Image.asset(
-            'assets/download.jpeg',
+            'assets/w_s.jpg',
             fit: BoxFit.cover,
           ),
           Container(
@@ -45,14 +45,21 @@ class WelcomeScreenState extends State<WelcomeScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'VINILOS_HT',
+                  'VINILOS HT',
                   style: TextStyle(
-                    fontSize: 40,
+                    fontSize: 50,
                     fontWeight: FontWeight.bold,
                     foreground: Paint()
                       ..shader = LinearGradient(
-                        colors: [Colors.white, Colors.brown],
-                      ).createShader(Rect.fromLTWH(0, 0, 200, 70)),
+                        colors: [Colors.white, Colors.blue, Colors.grey],
+                      ).createShader(Rect.fromLTWH(0, 0, 300, 70)),
+                    shadows: [
+                      Shadow(
+                        blurRadius: 10.0,
+                        color: Colors.black54,
+                        offset: Offset(5.0, 5.0),
+                      ),
+                    ],
                   ),
                 ),
                 SizedBox(height: 30),

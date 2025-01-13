@@ -3,6 +3,9 @@ import 'main_screen.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
 
+// Variable global para almacenar el usuario autenticado
+String? currentUserEmail;
+
 class LoginScreen extends StatefulWidget {
   @override
   LoginScreenState createState() => LoginScreenState();
@@ -36,6 +39,7 @@ class LoginScreenState extends State<LoginScreen> {
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save();
       if (users.containsKey(email) && users[email] == password) {
+        currentUserEmail = email;
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => MainScreen()),
         );
@@ -103,7 +107,7 @@ class LoginScreenState extends State<LoginScreen> {
                       return null;
                     },
                     onSaved: (value) {
-                      email = value ?? ''; // Maneja el caso de null
+                      email = value ?? '';
                     },
                   ),
                   SizedBox(height: 20),
@@ -124,12 +128,13 @@ class LoginScreenState extends State<LoginScreen> {
                       return null;
                     },
                     onSaved: (value) {
-                      password = value ?? ''; // Maneja el caso de null
+                      password = value ?? '';
                     },
                   ),
                   SizedBox(height: 30),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.brown,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       ),
@@ -139,8 +144,7 @@ class LoginScreenState extends State<LoginScreen> {
                     onPressed: _submit,
                     child: Text(
                       'Entrar',
-                      style: TextStyle(
-                          fontSize: 18, color: Color.fromARGB(255, 0, 0, 0)),
+                      style: TextStyle(fontSize: 18, color: Colors.white),
                     ),
                   ),
                 ],

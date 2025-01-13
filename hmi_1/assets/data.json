@@ -5,18 +5,18 @@
         "password": "1234"
     },
     {
-        "name": "Navarro Herminio",
+        "name": "Tomás Pérez",
         "email": "tomas@alumno.upv.es",
         "password": "1234"
     },
     {
-        "name": "Herminio Herminio",
+        "name": "Hugo Arocas",
         "email": "hugo@alumno.upv.es",
         "password": "1234"
     },
     {
-        "name": "Navarro Navarro",
-        "email": "profesor@profesor.upv.es",
-        "password": "1234"
+        "name": "Joaquín José",
+        "email": "joaquin@profesor.upv.es",
+        "password": "5678"
     }
 ]
