@@ -1,7 +1,7 @@
 name: vinyls
 description: Our new application project
 
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: 'none'
 
 version: 0.0.1+1
 
@@ -24,6 +24,6 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/download.jpeg
+    - assets/w_s.jpg
     - assets/m_b.jpg
     - assets/data.json
