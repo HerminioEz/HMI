@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Herminio Navarro",
+        "email": "herminio@alumno.upv.es",
+        "password": "1234"
+    },
+    {
+        "name": "Navarro Herminio",
+        "email": "tomas@alumno.upv.es",
+        "password": "1234"
+    },
+    {
+        "name": "Herminio Herminio",
+        "email": "hugo@alumno.upv.es",
+        "password": "1234"
+    },
+    {
+        "name": "Navarro Navarro",
+        "email": "profesor@profesor.upv.es",
+        "password": "1234"
+    }
+]
