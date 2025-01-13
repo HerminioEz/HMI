@@ -24,7 +24,11 @@ class LoginScreenState extends State<LoginScreen> {
     final String response = await rootBundle.loadString('assets/data.json');
     final List<dynamic> data = json.decode(response);
     setState(() {
-      users = {for (var user in data) user['email']: user['password']};
+      users = {
+        for (var user in data)
+          if (user['email'] != null && user['password'] != null)
+            user['email']: user['password']
+      };
     });
   }
 

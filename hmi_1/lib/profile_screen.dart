@@ -1,10 +1,30 @@
 import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'package:flutter/services.dart' show rootBundle;
 
-class ProfileScreen extends StatelessWidget {
-  final String name;
-  final String email;
+class ProfileScreen extends StatefulWidget {
+  @override
+  ProfileScreenState createState() => ProfileScreenState();
+}
 
-  ProfileScreen({required this.name, required this.email});
+class ProfileScreenState extends State<ProfileScreen> {
+  Map<String, dynamic> userData = {};
+
+  @override
+  void initState() {
+    super.initState();
+    loadUserData();
+  }
+
+  Future<void> loadUserData() async {
+    final String response = await rootBundle.loadString('assets/data.json');
+    final List<dynamic> data = json.decode(response);
+    setState(() {
+      if (data.isNotEmpty) {
+        userData = data[0]; // Carga el primer usuario de la lista
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,19 +33,21 @@ class ProfileScreen extends StatelessWidget {
         title: Text('Perfil del Usuario'),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Nombre: $name',
-              style: TextStyle(fontSize: 20),
-            ),
-            Text(
-              'Email: $email',
-              style: TextStyle(fontSize: 20),
-            ),
-          ],
-        ),
+        child: userData.isEmpty
+            ? CircularProgressIndicator()
+            : Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Nombre: ${userData['name']}',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  Text(
+                    'Email: ${userData['email']}',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ],
+              ),
       ),
     );
   }
