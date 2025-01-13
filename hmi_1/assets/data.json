@@ -1,0 +1,18 @@
+[
+    {
+        "email": "herminio@alumno.upv.es",
+        "password": "1234"
+    },
+    {
+        "email": "tomas@alumno.upv.es",
+        "password": "1234"
+    },
+    {
+        "email": "hugo@alumno.upv.es",
+        "password": "1234"
+    },
+    {
+        "name": "profesor@profesor.upv.es",
+        "password": "1234"
+    }
+]

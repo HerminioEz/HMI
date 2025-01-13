@@ -45,13 +45,13 @@ class WelcomeScreenState extends State<WelcomeScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  '¡Bienvenido!',
+                  'VINILOS_HT',
                   style: TextStyle(
                     fontSize: 40,
                     fontWeight: FontWeight.bold,
                     foreground: Paint()
                       ..shader = LinearGradient(
-                        colors: [Colors.blue, Colors.greenAccent],
+                        colors: [Colors.white, Colors.brown],
                       ).createShader(Rect.fromLTWH(0, 0, 200, 70)),
                   ),
                 ),

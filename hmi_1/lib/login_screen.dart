@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'main_screen.dart';
+import 'dart:convert';
+import 'package:flutter/services.dart' show rootBundle;
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -9,13 +12,45 @@ class LoginScreenState extends State<LoginScreen> {
   final formKey = GlobalKey<FormState>();
   String email = '';
   String password = '';
+  Map<String, String> users = {};
+
+  @override
+  void initState() {
+    super.initState();
+    loadUserData();
+  }
+
+  Future<void> loadUserData() async {
+    final String response = await rootBundle.loadString('assets/data.json');
+    final List<dynamic> data = json.decode(response);
+    setState(() {
+      users = {for (var user in data) user['email']: user['password']};
+    });
+  }
 
   void _submit() {
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save();
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => MainScreen()),
-      );
+      if (users.containsKey(email) && users[email] == password) {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => MainScreen()),
+        );
+      } else {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text('Error'),
+            content: Text(
+                'Credenciales incorrectas. Por favor, inténtalo de nuevo.'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(),
+                child: Text('OK'),
+              ),
+            ],
+          ),
+        );
+      }
     }
   }
 
@@ -25,7 +60,7 @@ class LoginScreenState extends State<LoginScreen> {
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.blue, Colors.purpleAccent],
+            colors: [Colors.black, Colors.brown],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -64,7 +99,7 @@ class LoginScreenState extends State<LoginScreen> {
                       return null;
                     },
                     onSaved: (value) {
-                      email = value!;
+                      email = value ?? ''; // Maneja el caso de null
                     },
                   ),
                   SizedBox(height: 20),
@@ -85,7 +120,7 @@ class LoginScreenState extends State<LoginScreen> {
                       return null;
                     },
                     onSaved: (value) {
-                      password = value!;
+                      password = value ?? ''; // Maneja el caso de null
                     },
                   ),
                   SizedBox(height: 30),
@@ -100,40 +135,14 @@ class LoginScreenState extends State<LoginScreen> {
                     onPressed: _submit,
                     child: Text(
                       'Entrar',
-                      style: TextStyle(fontSize: 18),
+                      style: TextStyle(
+                          fontSize: 18, color: Color.fromARGB(255, 0, 0, 0)),
                     ),
                   ),
                 ],
               ),
             ),
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class MainScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Colors.teal, Colors.greenAccent],
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
-          ),
-        ),
-        child: Text(
-          '¡Bienvenido a la Pantalla Principal!',
-          style: TextStyle(
-            fontSize: 28,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-          textAlign: TextAlign.center,
         ),
       ),
     );
